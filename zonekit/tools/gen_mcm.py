@@ -53,26 +53,12 @@ AUTHOR = "geoffjeffrey"
 # (setting id, hover text, kind, provider variable, combo labels, default, MCM category, setter key, values)
 # The setter key + value name the rootgraph node: ImmBF_Set_<key>_<value> (bool values lowercase). Defaults must match
 # the GlobalVariablePrototypes patch (gen_patches.py) and the provider variables (setup_assets.py).
-SETTINGS = [
-    ("Granite fight: enemies",
-     "The Granite fight at the Generators (every ending). Much fewer: 18 Granite instead of 41, one Gauss sniper instead "
-     "of five. Fewer: 29. Vanilla: 39 (two generic Granite cannot come back). Takes effect the next time the fight starts.",
-     "combo", "GraniteEnemies", ["Much fewer", "Fewer", "Vanilla"], 0, "Granite fight", "Granite_Enemies", [0, 1, 2]),
-    ("Granite fight: no ambush",
-     "On: the elite Granite stand visible in the arena instead of appearing out of nowhere, and the sniper has to spot "
-     "you before he shoots. Off: as in vanilla. Takes effect the next time the fight starts.",
-     "bool", "GraniteNoAmbush", None, True, "Granite fight", "Granite_NoAmbush", [True, False]),
-    # tester 2026-11-06: "allow people to tune specific fights to their liking": one MCM category per fight
-    ("Wish Granter illusion: no reinforcements",
-     "The Ward fight inside the Wish Granter's illusion. On: only the first five Ward soldiers; nobody keeps appearing "
-     "around or behind you. Off: as in vanilla, more Ward keep appearing for two minutes. Takes effect the next time "
-     "the illusion starts.",
-     "bool", "WishGranterNoReinforcements", None, True, "Wish Granter illusion", "WishGranter_NoReinforcements", [True, False]),
-    ("Wish Granter illusion: end when the soldiers are dead",
-     "On: the illusion ends as soon as the Ward soldiers are dead. Off: as in vanilla, it always lasts two minutes. "
-     "Takes effect the next time the illusion starts.",
-     "bool", "WishGranterEndOnKill", None, True, "Wish Granter illusion", "WishGranter_EndOnKill", [True, False]),
-]
+# (setting id, hover text, kind, provider variable, combo labels, default, MCM category, setter key, values), from
+# mcm_settings.json, which gen_patches.py writes from its BATTLES data (one place for the wording, the defaults and the
+# global variables; setup_assets.py reads it for the provider's variables)
+import json
+SETTINGS = [(s["label"], s["hover"], s["kind"], s["var"], s.get("labels"), s["default"], s["category"], s["key"], s["values"])
+            for s in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mcm_settings.json"), encoding="utf-8"))]
 P = "BP_MCM_ModExample1.BP_MCM_ModExample1:EventGraph."
 HEADERS = {"/MCM_ModExample1/MCM_Header09.MCM_Header09": f"{RT}/T_ImmBF_MCMHeader.T_ImmBF_MCMHeader",
            "/MCM_ModExample1/MCM_CatHeader12.MCM_CatHeader12": f"{RT}/T_ImmBF_MCMCatHeader.T_ImmBF_MCMCatHeader"}

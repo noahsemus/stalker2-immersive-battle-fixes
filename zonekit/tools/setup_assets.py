@@ -25,8 +25,9 @@ lines = []
 
 # provider variables: the setting values (defaults = the mod's defaults, the same as the GlobalVariablePrototypes
 # patch written by gen_patches.py) and Registered (Apply waits for it: an unknown setting reads as false / 0)
-MCM_VARS = [("Registered", "bool", None), ("GraniteEnemies", "int", 0), ("GraniteNoAmbush", "bool", True),
-            ("WishGranterNoReinforcements", "bool", True), ("WishGranterEndOnKill", "bool", True)]
+import json
+_settings = json.load(open(os.path.join(REPO, "zonekit", "tools", "mcm_settings.json"), encoding="utf-8"))
+MCM_VARS = [("Registered", "bool", None)] + [(s["var"], "int" if s["kind"] == "combo" else "bool", s["default"]) for s in _settings]
 
 
 def log(s):

@@ -1,0 +1,60 @@
+[
+ {
+  "label": "Granite fight: enemies",
+  "hover": "The Granite fight at the Generators (every ending). Much fewer: about a third of the Granite and one Gauss sniper instead of five. Fewer: about two thirds. Vanilla: all of them (two generic Granite cannot come back). Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Granite fight",
+  "var": "GraniteEnemies",
+  "key": "Granite_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Granite fight: no ambush",
+  "hover": "On: the elite Granite stand visible in the arena instead of appearing out of nowhere, and the sniper has to spot you before he shoots. Off: as in vanilla. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Granite fight",
+  "var": "GraniteNoAmbush",
+  "key": "Granite_NoAmbush",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Wish Granter illusion: no reinforcements",
+  "hover": "The Ward fight inside the Wish Granter's illusion. On: only the first five Ward soldiers; nobody keeps appearing around or behind you. Off: as in vanilla, more Ward keep appearing for two minutes. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Wish Granter illusion",
+  "var": "WishGranterNoReinforcements",
+  "key": "WishGranter_NoReinforcements",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Wish Granter illusion: end when the soldiers are dead",
+  "hover": "On: the illusion ends as soon as the Ward soldiers are dead. Off: as in vanilla, it always lasts two minutes. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Wish Granter illusion",
+  "var": "WishGranterEndOnKill",
+  "key": "WishGranter_EndOnKill",
+  "values": [
+   true,
+   false
+  ]
+ }
+]
