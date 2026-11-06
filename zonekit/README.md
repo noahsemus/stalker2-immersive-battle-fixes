@@ -70,3 +70,17 @@ mod go to `harness/docs/` instead (promote them).
   `DamageMultiplier`). Also: "there are still a lot of enemies on the wish granter fight" = the illusion fight
   (E06_MQ02_C02), not touched by any build yet. Checkpoint on his word ("checkpoint it").
 - Git on Windows: the spawn actor patch paths are over 260 characters; `git config core.longpaths true` in the repo.
+
+## 2026-11-06 — build 2: Wish Granter illusion (E06_MQ02_C02), encounter spawner off
+- Noah: "there are still a lot of enemies on the wish granter fight", "in the wish granter fight enemies still spawn
+  behind you"; asked which: the illusion fight.
+- Kit: E06_MQ02_C02 (container `E06_MQ02_Container_IllusionFight`, launched after `E06_MQ02_Technical_CombatTime`)
+  is a 2-minute survival: `Spawn_AgressiveVarta` (squad EEE2DEAC, 5 Ward Recon; member [0] and [4] are the same
+  GUID) at the illusion start, then 2 s after CombatTime `SendSignalIllusionVartaEnableSpawnReceiver` (receiver
+  0B20CD93) switches on a level encounter spawner; `Technical_Delay2` (120 s) -> Ward neutral -> despawn signal ->
+  End. Nothing waits for kills, so the spawner can go without stalling anything. Retail 2.1 has the same 16 nodes.
+- Change: the SendSignal's only launcher is now `E06_MQ02_C02_Technical_Debug` (vanilla, no launchers, never runs).
+  Squad and timer stay vanilla. `gen_patches.py --only E06_MQ02_C02` wrote just this file (the Granite files in the
+  kit are still checkpoint-granite's; the MCM cfg stays unwritten). The kit plugin also holds the empty MCM
+  Blueprints (no graph, no WorldSubsystemData: inert in this cook).
+- Cooked and installed 09:33 (override pak: 33 cfgs = checkpoint-granite's 32 + this one). Test save: 2026-11-06 00:08 (`4E39ECB3`: illusion container named, `E06_MQ02_C02_Start` not yet).
