@@ -99,6 +99,8 @@ sets **our own global variables** that quest nodes read when a battle runs:
 - Toggles that undo a node patch (e.g. Granite ambush) add a conditional copy of the vanilla node after ours.
 - What MCM **cannot** change: anything read from spawn actor data at spawn time (Granite `DamageMultiplier`,
   respawn settings). Those stay as shipped; alternatives would be optional pak variants.
+- Tester 2026-11-06: "allow people to tune specific fights to their liking": every change of every fight is its own
+  MCM setting, grouped by fight (Wish Granter illusion: "no reinforcements", "end when the soldiers are dead").
 - Settings per battle (MCM category = the battle): "Enemies" dropdown Much fewer (default) / Fewer / Vanilla, plus
   battle-specific toggles (Granite: "No ambush", default on). Faust clones: count / pace dropdown (later builds).
 - Quest-node budget: ~3 nodes per enemy added back (Granite ~80); setters ~3 per setting. Saves on this PC sit at
