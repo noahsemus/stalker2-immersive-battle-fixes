@@ -84,3 +84,14 @@ mod go to `harness/docs/` instead (promote them).
   kit are still checkpoint-granite's; the MCM cfg stays unwritten). The kit plugin also holds the empty MCM
   Blueprints (no graph, no WorldSubsystemData: inert in this cook).
 - Cooked and installed 09:33 (override pak: 33 cfgs = checkpoint-granite's 32 + this one). Test save: 2026-11-06 00:08 (`4E39ECB3`: illusion container named, `E06_MQ02_C02_Start` not yet).
+
+## 2026-11-06 — build 3: the illusion ends when the Recon squad is dead
+- Noah (before testing b2): "i don't think you should have to wait at all. you need to end it right after the 5
+  soldiers are killed".
+- `E06_MQ02_C02_ChangeRelationships_VartaNeutral` (vanilla end chain: Ward neutral -> despawn signal -> End) gets a
+  second launcher group [our `OnNPCDeathEvent` on squad EEE2DEAC + `Technical_Delay1`]; the 120 s `Delay2` group
+  stays as the fallback. Delay1 in the group: a squad killed before CombatTime must not turn Ward neutral before
+  `VartaEnemy` runs (the player would leave the illusion as Ward's enemy). The death event is written like vanilla's
+  squad events (LaunchOnQuestStart, OnObjDeath; no Launchers line) and needs a save from before the illusion starts.
+- Unknown: the squad lists one member GUID twice ([0] and [4] = 9F617E81); if that keeps the squad's death from
+  firing, the 120 s timer still ends it. Cooked and installed 09:37 (3 min cook).
