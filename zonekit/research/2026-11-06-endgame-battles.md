@@ -258,7 +258,7 @@ Shared Generators content `E16_MQ01_P` -> C01/C02/C03 (every ending):
   | `SqEleven` L1451 | 2 | signal (sparks effect) |
   | `CptPrice` L2115 | 1 | 15 m |
   | `Granite_Elites` L1764 | 2 CC + 2 Storm, **spawned hidden** (`ToggleNPCHidden ForceHide` L3261, unhidden on aggro L3280) | 18 m |
-  | `Snipers` L2259 | **5 Granit_Sniper (Gauss)** | 15 s after elites aggro (`Technical_Delay_Snipers` L2241), 10 m |
+  | `Snipers` L2259 | **5 Granit_Sniper (Gauss)** | the moment the elites aggro (launcher [0] `Technical_Granit_Elites_Aggro`; the [1] group via `Technical_Delay_Snipers` L2241, 15 s, is a no-op since any one group starts the node), 10 m |
   | `FinalSquad` L2414 | 1 | 30 s later (`Technical_Delay2` L2396) or elites dead |
 
   ~41 Granite, finite; ends when elites + snipers + last squad die (`Technical_FinishGraniteStage` L2997).

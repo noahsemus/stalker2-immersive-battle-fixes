@@ -40,7 +40,7 @@ Full research with file:line and quoted nodes: `zonekit/research/2026-11-06-endg
 | 9 | Down Below, Richter boss (`E14_MQ02_C03`) | D + B | 9 Spark + a level spawner |
 | 10 | Eye of the Storm (`E15_MQ01_C02`) | B | 4 level spawners, container relaunched forever |
 | 11 | The Last Wish, Red Fortress (`E15_MQ03`) | C + D | ~44 Monolith; the 16-man `8_Ground` squad appears below / behind once you are up |
-| 12 | Granite fight, every ending (`E16_MQ01_C03`) | C | ~41 Granite; 5 Gauss snipers 15 s after the hidden elites aggro |
+| 12 | Granite fight, every ending (`E16_MQ01_C03`) | C | ~41 Granite; 5 Gauss snipers the moment the hidden elites aggro |
 | 13 | Ending finales (`E16_MQ01` / `E16_MQ02` / `E16_MQ03`) | D | squads of 3-5; garage squad spawns 22 m below its trigger |
 
 ## Approach, cheapest and least conflicting first
@@ -70,12 +70,18 @@ Never remove a squad outright: its `OnNPCDeathEvent` drives the next step. Shrin
 | Which way the PSY azimuth 0 deg points | only if the tester wants phantoms moved instead of blocked |
 | Saves before each battle | tester's saves; otherwise a save pack |
 
-## Decisions (tester)
-- [ ] Scope: all 13 battles above, or a subset.
-- [ ] How many fewer: proposed respawning squads finite (one refill at most), big squads about halved, Faust
-      clones 5 -> 2 every 5-8 s.
-- [ ] Psy phantoms during these battles: block / leave vanilla.
-- [ ] Gauss rifles on generic Monolith at Master: leave / swap in these battles only.
+## Decisions (tester, 2026-11-06)
+- Scope: battles 2-8 and 10-13 of the table. **Not** 1 (SIRCAA escape) and 9 (Richter boss): leave vanilla.
+- Amount: **heavy**: no respawns at all, big squads down to about a third, Faust clones 1-2 every 8-12 s.
+- Psy phantoms: vanilla.
+- Gauss rifles: vanilla.
+- Granite fight first ("specifically awful", "not just spawns, general insta death"): heavy cut (41 -> 18), Granite
+  deal 65% damage (spawn actor `DamageMultiplier = 0.65`; meaning inferred, build 1 confirms), no ambush (elites
+  visible from their spawn, snipers not told where the player is). Granite snipers keep the Gauss.
+
+## Builds
+- **b1 = the Granite fight only** (`zonekit/tools/gen_patches.py`). Test save: 2026-09-23 21:26 (Generators, C01 and
+  C02 done, Granite fight not started; save `48B59BF6...`).
 
 ## Test matrix (all must pass before a release)
 | # | Setup | Steps | Expected |
