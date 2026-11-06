@@ -48,3 +48,19 @@ mod go to `harness/docs/` instead (promote them).
 - Node toggles (Granite ambush): the vanilla node keeps its vanilla fields and is relaunched through an `If` (False =
   vanilla); our changed copy runs on True.
 - Not changeable from MCM: spawn actor data read at spawn (`DamageMultiplier`, respawn fields).
+
+## 2026-11-06 — build 2 prepared (MCM; not cooked: waits for the b1 test)
+- `gen_patches.py` b2 (subagent, reviewed): 55 files, 67 new quest nodes for Granite (16 If + 21 Spawn + 21
+  AddOrRemoveFromSquad, 2 If + 2 node copies for the ambush toggle, 5 setters). Counts: much fewer 18 / fewer 29 /
+  vanilla 39. The 2 s Technical delay before AddOrRemoveFromSquad was dropped: vanilla E07_DugaAssault_C01 adds 54
+  spawns to squads from the same launcher as the Spawn. Added-back members also get DamageMultiplier 0.65.
+  `StartDelay` exists only on Technical nodes in vanilla. Not yet written into the kit (`--dry` only).
+- `CppMediator.StartQuestNode(SID)`: SID is the struct `/Script/Stalker2.PrototypeSID`, text form `(Value="X")`
+  (editor import_text); no BP make node, so each setter is its own call with a literal SID.
+- Assets made in the open editor (`setup_assets.py` via ue_exec): `Runtime/BP_ImmBFSubsystem`, `BP_ImmBFMCM`
+  (vars Registered, GraniteEnemies 0, GraniteNoAmbush true), header textures copied from MCM_ModExample1.
+  `.uplugin` got the optional ModConfigurationMenu dependency; NewPackages lists the five packages.
+- `gen_mcm.py` -> `zonekit/paste/<BP>/EventGraph.txt` (subsystem 21 nodes, provider 39). All function references
+  checked in the editor.
+- Open: does a setter re-run after it ran once (Fewer -> Much fewer -> Fewer)? Do squad-wide orders given at spawn
+  (elites Stay / ForceHide, Kill) reach members added back? Squad-wide despawns and added members.

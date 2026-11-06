@@ -1,0 +1,5 @@
+/ImmersiveBattleFixes/ImmersiveBattleFixes
+/ImmersiveBattleFixes/Runtime/BP_ImmBFSubsystem
+/ImmersiveBattleFixes/Runtime/BP_ImmBFMCM
+/ImmersiveBattleFixes/Runtime/T_ImmBF_MCMHeader
+/ImmersiveBattleFixes/Runtime/T_ImmBF_MCMCatHeader
