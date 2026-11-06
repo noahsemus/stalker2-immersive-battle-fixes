@@ -9,11 +9,20 @@ Repo `noahsemus/stalker2-immersive-battle-fixes`, Zone Kit plugin `ImmersiveBatt
 harness on 2026-11-06.
 
 ## Current state (one line per checkpoint / release: date, what changed, what the tester confirmed in game)
-- 2026-11-06: repo created. Next: the tester picks `ImmersiveBattleFixes` in the editor's toolbar mod selector once
-  (GameFeatureData), then kit research for PLAN.md.
+- 2026-11-06: repo created; kit research done, plan written (`PLAN.md`; research in `zonekit/research/`). Waiting
+  on the tester: pick `ImmersiveBattleFixes` in the editor's toolbar mod selector once (GameFeatureData), the four
+  decisions in PLAN.md, which saves exist before the battles. Then build 1.
 
-## Key facts (verified; cite file:line in the kit)
-- _(fill in as research lands)_
+## Key facts (kit research 2026-11-06; details and citations in `zonekit/research/`)
+- Quest `Spawn` nodes hold no count / distance / visibility; who, where and how many is in the spawn actor
+  (`SpawnActorPrototypes/WorldMap_WP/<level>/<GUID>.cfg`). Waves = respawning squads (`InfiniteRespawn`,
+  `RespawnPoints[]` picked with no player check), level `EncounterNPCSpawner` / `FaustBossfightController` actors
+  (contents in level data), trigger-chained gauntlets, big squads. No E06-E16 quest loops a Spawn node.
+- `MinDistanceToPlayerForRespawn` exists on squads, used once in vanilla (E11_MQ01, 300).
+- Psy phantoms: player PSY effects `SpawnPSYPhantoms` / `SpawnPSYNPC` (`EffectPrototypes.cfg:6694` / `6752`),
+  blocked by flag effects `BlockPSYPhantomsSpawns` / `BlockPSYNPCSpawns`.
+- A wave squad's `OnNPCDeathEvent` advances the quest: shrink squads, never remove them.
+- Endgame zones switch the A-Life director to `EmptyGroup`; ambient spawns are not the cause there.
 
 ## Assets this mod may override
 - _(none yet; see harness/docs/compatibility.md before adding any)_
