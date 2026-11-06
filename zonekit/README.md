@@ -121,3 +121,4 @@ mod go to `harness/docs/` instead (promote them).
 - Saves before fights (name-table scan, approximate): Wish Granter 2026-11-06 00:08; Ward playthrough 2026-09-23:
   Kupol 18:47, Eye of the Storm 20:12, Granite 21:26. None before Duga, Breach, Boundary, Enerhetyk, Korshunov; Red
   Fortress needs a Strider-route save.
+- In game: the mod was missing from the MCM menu. Cooked bytecode (zen_kismet): only 11 RegisterModSetting / 11 defaults, no AddUniqueModID. Cause: lifted node names 920+k / 930+k / 940+k collided past 10 settings and the paste dropped the duplicates. Fixed (1000+k / 1100+k / 1200+k / 1300, generator asserts unique names); provider re-paste.

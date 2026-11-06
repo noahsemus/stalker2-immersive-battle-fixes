@@ -30,6 +30,19 @@ _settings = json.load(open(os.path.join(REPO, "zonekit", "tools", "mcm_settings.
 MCM_VARS = [("Registered", "bool", None)] + [(s["var"], "int" if s["kind"] == "combo" else "bool", s["default"]) for s in _settings]
 
 
+def _sid(text):
+    v = unreal.PrototypeSID()
+    v.import_text(f'(Value="{text}")')
+    return v
+
+
+# one PrototypeSID variable per setter quest node, its default = the node's SID (build 4: a literal SID on the pasted
+# StartQuestNode pin came through empty, while string pin defaults survived; a variable default is set here and read
+# back). Name: Sid_<key>_<value>, the setter SID minus "ImmBF_Set_".
+_vs = lambda s, v: ("true" if v else "false") if s["kind"] == "bool" else str(v)
+MCM_VARS += [(f"Sid_{s['key']}_{_vs(s, v)}", "sid", _sid(f"ImmBF_Set_{s['key']}_{_vs(s, v)}")) for s in _settings for v in s["values"]]
+
+
 def log(s):
     lines.append(str(s)); unreal.log("[harness] " + str(s))
 
@@ -61,6 +74,8 @@ def make_bp(path, parent):
 def T(kind):
     if kind in ("bool", "int", "real", "string"):
         return BEL.get_basic_type_by_name(kind)
+    if kind == "sid":
+        return BEL.get_struct_type(unreal.PrototypeSID.static_struct())
     return BEL.get_object_reference_type(kind)
 
 
@@ -79,7 +94,8 @@ def add_vars(bp, path, vars_):
     for name, kind, default in vars_:
         if default is not None:
             cdo.set_editor_property(name, default)
-        log(f"{path}: {name} = {cdo.get_editor_property(name)!r}")
+        v = cdo.get_editor_property(name)
+        log(f"{path}: {name} = {v.export_text() if hasattr(v, 'export_text') else repr(v)}")
     log(f"{path} saved: {EAL.save_asset(path, only_if_is_dirty=False)}")
 
 

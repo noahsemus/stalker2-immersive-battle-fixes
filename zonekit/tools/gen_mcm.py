@@ -217,7 +217,12 @@ g.link(add["ReturnValue"], sa["SpawnAttempts"])
 
 
 def emit(bp, lines, nodes):
-    import json
+    import json, collections
+    # build 4: the lifted MCM nodes were numbered 920+k / 930+k / 940+k; past 10 settings the names collided, the paste
+    # kept one node per name and the register chain stopped at the 11th setting (no AddUniqueModID: not in the menu)
+    names = re.findall(r'^Begin Object Class=\S+ Name="([^"]+)"', "\n".join(lines), re.M)
+    dup = [n for n, c in collections.Counter(names).items() if c > 1]
+    assert not dup, f"{bp}: duplicate node names {dup}"
     d = os.path.join(OUT, bp)
     os.makedirs(d, exist_ok=True)
     write(os.path.join(d, "EventGraph.txt"), lines)
@@ -294,7 +299,7 @@ ev_r = Lifted(EX, P + "K2Node_Event_6", "K2Node_Event_901", 0, 0)
 lifted.append(ev_r)
 prev, prev_pin = ev_r, "then"
 for k, s in enumerate(SETTINGS):
-    r = Lifted(EX, P + "K2Node_Message_55", f"K2Node_Message_{920 + k}", 700 + 300 * k, 0, defaults(common(s)))
+    r = Lifted(EX, P + "K2Node_Message_55", f"K2Node_Message_{1000 + k}", 700 + 300 * k, 0, defaults(common(s)))
     lifted.append(r)
     link(prev, prev_pin, r, "execute")
     link(ev_r, "BPI MCM API", r, "self")
@@ -302,7 +307,7 @@ for k, s in enumerate(SETTINGS):
     xlink(r, vpin, self_get(s[3], cat, 650 + 300 * k, 500, MCM_CLS)[s[3]])
     xlink(r, "ComboBoxOptions", opts_for(s, 650 + 300 * k, 650))
     prev, prev_pin = r, "then"
-addid = Lifted(EX, P + "K2Node_Message_0", "K2Node_Message_902", 700 + 300 * len(SETTINGS), 0, defaults({"ModID": MOD_ID}))
+addid = Lifted(EX, P + "K2Node_Message_0", "K2Node_Message_1300", 700 + 300 * len(SETTINGS), 0, defaults({"ModID": MOD_ID}))
 lifted.append(addid)
 link(prev, prev_pin, addid, "execute")
 link(ev_r, "BPI MCM API", addid, "self")
@@ -319,7 +324,7 @@ for k, s in enumerate(SETTINGS):
         vals["ComboBoxSelectedOption"] = str(s[5])
     else:
         vals["BoolValue"] = "true" if s[5] else "false"
-    dn = Lifted(EX, P + "K2Node_Message_31", f"K2Node_Message_{930 + k}", 700 + 400 * k, 1300, defaults(vals))
+    dn = Lifted(EX, P + "K2Node_Message_31", f"K2Node_Message_{1100 + k}", 700 + 400 * k, 1300, defaults(vals))
     lifted.append(dn)
     link(prev, prev_pin, dn, "execute")
     link(ev_d, "BPI MCM API", dn, "self")
@@ -334,7 +339,7 @@ xlink(ev_a, "then", br["execute"])
 g.link(self_get("Registered", "bool", 150, 2800, MCM_CLS)["Registered"], br["Condition"])
 prev_exec = [br["then"]]
 for k, s in enumerate(SETTINGS):
-    gt = Lifted(EX, P + "K2Node_Message_66", f"K2Node_Message_{940 + k}", 700, 2600 + 300 * k,
+    gt = Lifted(EX, P + "K2Node_Message_66", f"K2Node_Message_{1200 + k}", 700, 2600 + 300 * k,
                 defaults({"ModID": MOD_ID, "SettingID": s[0]}))
     lifted.append(gt)
     for p_ in prev_exec:
@@ -350,7 +355,13 @@ for k, s in enumerate(SETTINGS):
 def setter(sid, x, y, ins):
     """StartQuestNode(sid) then the console twin; returns the last exec out."""
     q = lib_call(CPP, "/Script/Stalker2.Default__CppMediator", "StartQuestNode", x, y, f"setter {sid}")
-    q.pin("SID", "struct", sub=SID_T, extra=f'DefaultValue="(Value=\\"{sid}\\")",')
+    # the SID from a variable (Sid_<key>_<value>, default set by setup_assets.py): a literal default on this pin
+    # came through empty after the paste (build 4)
+    sp = q.pin("SID", "struct", sub=SID_T)
+    sp.ref = True
+    sp.const = True
+    var = "Sid_" + sid[len("ImmBF_Set_"):]
+    g.link(self_get(var, "struct", x - 250, y + 150, MCM_CLS, sub=SID_T)[var], sp)
     for p_ in ins:
         g.link(p_, q["execute"])
     c = lib_call(KSL, "/Script/Engine.Default__KismetSystemLibrary", "ExecuteConsoleCommand", x + 400, y, "the same by console (twin)")
@@ -399,17 +410,5 @@ for a_, b_ in HEADERS.items():
     out = [l_.replace(a_, b_) for l_ in out]
 assert not any("/MCM_ModExample1/" in l_ for l_ in out)
 
-
-def sid_default_where_the_editor_writes_it(line):
-    # a struct pin's default goes after the pin type, where the editor writes it (an enum pin default placed right
-    # after PinName was reset on paste, ImmersiveLooting 1.3.1; strings were fine)
-    m = re.search(r'PinName="SID",(DefaultValue="(?:[^"\\]|\\.)*",)', line)
-    if not m:
-        return line
-    line = line.replace(m.group(1), "", 1)
-    return line.replace("bSerializeAsSinglePrecisionFloat=False,", "bSerializeAsSinglePrecisionFloat=False," + m.group(1), 1)
-
-
-out = [sid_default_where_the_editor_writes_it(l_) for l_ in out]
 emit("BP_ImmBFMCM", out, len(g.nodes) + len(lifted))
 print("provider:", len(g.nodes) + len(lifted), "nodes")
