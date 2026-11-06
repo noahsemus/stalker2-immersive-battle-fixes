@@ -123,3 +123,18 @@ mod go to `harness/docs/` instead (promote them).
   Fortress needs a Strider-route save.
 - In game: the mod was missing from the MCM menu. Cooked bytecode (zen_kismet): only 11 RegisterModSetting / 11 defaults, no AddUniqueModID. Cause: lifted node names 920+k / 930+k / 940+k collided past 10 settings and the paste dropped the duplicates. Fixed (1000+k / 1100+k / 1200+k / 1300, generator asserts unique names); provider re-paste.
 - Re-paste checked in the cooked bytecode (18:16): 17 RegisterModSetting, 17 RegisterDefaultModSetting, 17 GetModSetting, 1 AddUniqueModID, Registered = true, 41 StartQuestNode(this.Sid_*), 41 console twins.
+
+## 2026-11-06 — build 4c: Wish Granter after-illusion blocker (safety net)
+- Noah (build 4b, from the 00:08 save): after the illusion he talked to the colonel, "dalin never talked to me. i can
+  only ask what's new in the zone", the glass doors to Agatha stayed locked. "please try and make a fix to test".
+- Vanilla chain (E06_MQ02): illusion End -> FightIsOver -> StopExperiment -> MonolithEnd -> Dalin + Korshunov
+  teleported side by side (660825, 466508 / 466385) -> Comment_DalinAfterMonolith -> FirstDialogDone_1 -> the
+  colonel's talk (KorshAfterMonolith, not forced) and Dalin's forced DalinToAgatha (members Zotov FFD8691C, Korshunov,
+  Dalin; gated by `_Pin_0` DistanceToPoint <= 4 m at Dalin's spot) -> its last phrase finishes AfterMonolith ->
+  OnJournalQuestEvent -> Technical_Agatha (doors Door1 open / unlock, nii_Door_06 unlock). Nothing in E06_MQ02 reads
+  the illusion's nodes or its timing besides the container's End, so the cause is not in the data; unknown whether
+  vanilla does the same on this save (A/B: both Wish Granter settings Off).
+- Safety net (`extra_launchers` on vanilla nodes, groups appended, vanilla groups kept exactly): Dalin's dialog also
+  starts 3 s after the colonel's talk ends; AfterMonolith_Fin also runs 45 s after it (doors open, Dalin's line
+  skipped). 2 new nodes. Launched from the colonel's talk, so a save already past that talk is not helped.
+- Cooked 18:42 (108 cfgs).

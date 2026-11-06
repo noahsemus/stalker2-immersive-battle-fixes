@@ -1,5 +1,236 @@
 [
  {
+  "label": "Wish Granter illusion: no reinforcements",
+  "hover": "The Ward fight inside the Wish Granter's illusion. On: only the first five Ward soldiers; nobody keeps appearing around or behind you. Off: as in vanilla, more Ward keep appearing for two minutes. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Wish Granter illusion",
+  "var": "WishGranterNoReinforcements",
+  "key": "WishGranter_NoReinforcements",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Wish Granter illusion: end when the soldiers are dead",
+  "hover": "On: the illusion ends as soon as the Ward soldiers are dead. Off: as in vanilla, it always lasts two minutes. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Wish Granter illusion",
+  "var": "WishGranterEndOnKill",
+  "key": "WishGranter_EndOnKill",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Assault on the Duga: enemies",
+  "hover": "The Assault on the Duga: the Monolith at the barricades and the checkpoint (Ward's route), or in the tunnels and the headquarters (Scar's route). Much fewer: about a third of them. Fewer: about two thirds. Vanilla: all of them, except a few in Scar's tunnels who cannot come back. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Assault on the Duga",
+  "var": "DugaEnemies",
+  "key": "Duga_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Assault on the Duga: no endless guards at the psy lamps",
+  "hover": "On: the two Monolith guarding the checkpoint by the psy lamps are not there, and nobody keeps coming back in their place until both lamps are broken (on Scar's route, the same guards at the checkpoint before you go to sleep). Off: as in vanilla, they keep coming back. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Assault on the Duga",
+  "var": "DugaNoEndlessGuard",
+  "key": "Duga_NoEndlessGuard",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Assault on the Duga: no attack from behind at the checkpoint",
+  "hover": "Ward's route: once you and the Ward reach the middle of the checkpoint, no Monolith come at you from the barricades behind you. Off: as in vanilla, two small groups attack from behind. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Assault on the Duga",
+  "var": "DugaNoCounterAttack",
+  "key": "Duga_NoCounterAttack",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Assault on the Duga: fewer Faust copies",
+  "hover": "When Faust starts sending copies of himself at you. On: at most two come at a time, every 8 to 12 seconds. Off: as in vanilla, up to five at a time and much more often (on Ward's route every second near the end). Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Assault on the Duga",
+  "var": "DugaFewerClones",
+  "key": "Duga_FewerClones",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Once More unto the Breach: enemies",
+  "hover": "Once More unto the Breach (Ward) and Happiness for Everyone (Spark): the Monolith in the Duga compound, Liter D, the tunnels, the substation and the communication centre. Much fewer: about a third of them. Fewer: about two thirds. Vanilla: all of them. The first attack you fight off together with Spark always stays complete. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Once More unto the Breach",
+  "var": "BreachEnemies",
+  "key": "Breach_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Once More unto the Breach: fewer Faust copies",
+  "hover": "Only if you go in without the psy protection against Faust on your helmet. On: at most two of Faust's copies come at a time, every 8 to 12 seconds. Off: as in vanilla, four at a time every 2 to 5 seconds. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Once More unto the Breach",
+  "var": "BreachFewerClones",
+  "key": "Breach_FewerClones",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "The Boundary: enemies",
+  "hover": "The Monolith assault on Yaniv Station (The Boundary). This setting chooses whole squads, not single fighters. Much fewer: only the first squad, from the north. Fewer: one more squad comes round a flank after your second kill. Vanilla: two more squads, one from each side. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "The Boundary",
+  "var": "BoundaryEnemies",
+  "key": "Boundary_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Enerhetyk: snipers",
+  "hover": "The Monolith snipers on the high ground north of the Enerhetyk Palace of Culture while you fight off the attack (they only come if you approach from the north-west). Much fewer: about a third of them. Fewer: about two thirds. Vanilla: all of them. The squads attacking the building are unchanged. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Enerhetyk",
+  "var": "EnerhetykEnemies",
+  "key": "Enerhetyk_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Kupol: enemies",
+  "hover": "Down Below, on the way into the tunnel to the Foundation: the Monolith squad that rushes you when you go in. Much fewer: about a third of it. Fewer: about three quarters. Vanilla: all of it. With this mod the ones you kill never come back, whatever you choose here. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Kupol",
+  "var": "KupolEnemies",
+  "key": "Kupol_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Kupol: no reinforcements",
+  "hover": "On: no more Monolith keep appearing after the groups you kill there (the snipers at the entrance and the later waves). Off: as in vanilla. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Kupol",
+  "var": "KupolNoReinforcements",
+  "key": "Kupol_NoReinforcements",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Eye of the Storm: no phantom ambushes",
+  "hover": "On the way between the shelters during the emissions. On: no phantom dogs, boars, fleshes and bloodsuckers keep appearing behind you. Off: as in vanilla, they keep coming every few seconds until you reach a shelter. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Eye of the Storm",
+  "var": "EyeOfTheStormNoPhantomAmbush",
+  "key": "EyeOfTheStorm_NoPhantomAmbush",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
+  "label": "Red Fortress: enemies",
+  "hover": "The Monolith on the walls of the Red Fortress (The Last Wish). Much fewer: about half of each group on the climb, no snipers. Fewer: about three quarters. Vanilla: all of them. The group at the foot that you fight with Richter always stays complete. Takes effect the next time the fight starts.",
+  "kind": "combo",
+  "labels": [
+   "Much fewer",
+   "Fewer",
+   "Vanilla"
+  ],
+  "default": 0,
+  "category": "Red Fortress",
+  "var": "RedFortressEnemies",
+  "key": "RedFortress_Enemies",
+  "values": [
+   0,
+   1,
+   2
+  ]
+ },
+ {
+  "label": "Red Fortress: no squad below the walls",
+  "hover": "On: the big Monolith squad that appears on the ground below the walls once you are up the fortress, and shoots at you from below and behind, never comes. Off: as in vanilla. Takes effect the next time the fight starts.",
+  "kind": "bool",
+  "default": true,
+  "category": "Red Fortress",
+  "var": "RedFortressNoGroundSquad",
+  "key": "RedFortress_NoGroundSquad",
+  "values": [
+   true,
+   false
+  ]
+ },
+ {
   "label": "Granite fight: enemies",
   "hover": "The Granite fight at the Generators (every ending). Much fewer: about a third of the Granite and one Gauss sniper instead of five. Fewer: about two thirds. Vanilla: all of them (two generic Granite cannot come back). Takes effect the next time the fight starts.",
   "kind": "combo",
@@ -26,32 +257,6 @@
   "category": "Granite fight",
   "var": "GraniteNoAmbush",
   "key": "Granite_NoAmbush",
-  "values": [
-   true,
-   false
-  ]
- },
- {
-  "label": "Wish Granter illusion: no reinforcements",
-  "hover": "The Ward fight inside the Wish Granter's illusion. On: only the first five Ward soldiers; nobody keeps appearing around or behind you. Off: as in vanilla, more Ward keep appearing for two minutes. Takes effect the next time the fight starts.",
-  "kind": "bool",
-  "default": true,
-  "category": "Wish Granter illusion",
-  "var": "WishGranterNoReinforcements",
-  "key": "WishGranter_NoReinforcements",
-  "values": [
-   true,
-   false
-  ]
- },
- {
-  "label": "Wish Granter illusion: end when the soldiers are dead",
-  "hover": "On: the illusion ends as soon as the Ward soldiers are dead. Off: as in vanilla, it always lasts two minutes. Takes effect the next time the fight starts.",
-  "kind": "bool",
-  "default": true,
-  "category": "Wish Granter illusion",
-  "var": "WishGranterEndOnKill",
-  "key": "WishGranter_EndOnKill",
   "values": [
    true,
    false
