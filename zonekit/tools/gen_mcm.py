@@ -62,6 +62,16 @@ SETTINGS = [
      "On: the elite Granite stand visible in the arena instead of appearing out of nowhere, and the sniper has to spot "
      "you before he shoots. Off: as in vanilla. Takes effect the next time the fight starts.",
      "bool", "GraniteNoAmbush", None, True, "Granite fight", "Granite_NoAmbush", [True, False]),
+    # tester 2026-11-06: "allow people to tune specific fights to their liking": one MCM category per fight
+    ("Wish Granter illusion: no reinforcements",
+     "The Ward fight inside the Wish Granter's illusion. On: only the first five Ward soldiers; nobody keeps appearing "
+     "around or behind you. Off: as in vanilla, more Ward keep appearing for two minutes. Takes effect the next time "
+     "the illusion starts.",
+     "bool", "WishGranterNoReinforcements", None, True, "Wish Granter illusion", "WishGranter_NoReinforcements", [True, False]),
+    ("Wish Granter illusion: end when the soldiers are dead",
+     "On: the illusion ends as soon as the Ward soldiers are dead. Off: as in vanilla, it always lasts two minutes. "
+     "Takes effect the next time the illusion starts.",
+     "bool", "WishGranterEndOnKill", None, True, "Wish Granter illusion", "WishGranter_EndOnKill", [True, False]),
 ]
 P = "BP_MCM_ModExample1.BP_MCM_ModExample1:EventGraph."
 HEADERS = {"/MCM_ModExample1/MCM_Header09.MCM_Header09": f"{RT}/T_ImmBF_MCMHeader.T_ImmBF_MCMHeader",
