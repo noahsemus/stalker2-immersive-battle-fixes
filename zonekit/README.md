@@ -97,3 +97,27 @@ mod go to `harness/docs/` instead (promote them).
   firing, the 120 s timer still ends it. Cooked and installed 09:37 (3 min cook).
 - Build 3 tested (Noah: "nice wish granter stuff worked"): checkpoint-wishgranter. The generator at this commit is
   already the MCM work in progress; build 3's cfgs are the mirrored files under `zonekit/ImmersiveBattleFixes/`.
+
+## 2026-11-06 — build 4 prepared: every fight + MCM (not cooked yet)
+- Noah: "let's build the mcm now with all the values for every single fight"; "for the granite fight i don't think
+  your numbers are anywhere near correct. i fought like 5-6 people" (true: the Granite squads come one after another
+  and earlier ones are despawned by later triggers; menu texts give fractions, not head counts).
+- Three research subagents (proposals in the session scratchpad `proposals/group_A|B|C.md`), integrated by a fourth:
+  Duga (E07_MQ05/06), Breach (E08_MQ04 + C01/C02/C03, E08_MQ05 + C01/C02; leaf-named members dropped, `leaf_ok`),
+  Boundary (whole flank squads held back by Enemies; right-flank distance gate 45 -> 75 m static), Enerhetyk
+  (snipers 6 -> 2), Kupol (entrance 8 -> 3, refills off static, spawners toggle), Korshunov (no-respawn static),
+  Eye of the Storm (4 phantom spawners toggle), Red Fortress (climb 24 -> 12, the 16-man ground squad toggle);
+  finales unchanged (2-5 men per room, nearly all quest-named). Generator: 107 files, 390 new quest node names
+  (41 rootgraph setters), 17 MCM settings in story order; validation script found 0 errors.
+- Saves: 61.7-61.9k names at the Wish Granter stage (s2sav list 2026-11-06), so ~3.6k headroom before vanilla's own
+  growth through the late game.
+- Kit: all 107 cfgs written (GameData folder cleared first), provider variables added, paste regenerated
+  (subsystem 21 nodes, provider 270). Setter SIDs in the paste = the rootgraph setters (checked).
+- Paste round 1: every `StartQuestNode` SID pin came through empty (string defaults survived); fixed with 41
+  `Sid_<key>_<value>` PrototypeSID variables (CDO defaults from setup_assets.py, read back: 0 bad) feeding the pins.
+  Round 2 checked: 41 SID pins linked, interface present, 34 header-texture pins on our copies.
+- Cooked and installed 2026-11-06 17:59: override pak 107 cfgs + WorldSubsystemData; NewContent: subsystem,
+  provider, both header textures (the cooked provider imports T_ImmBF_MCMHeader / CatHeader, nothing from the example).
+- Saves before fights (name-table scan, approximate): Wish Granter 2026-11-06 00:08; Ward playthrough 2026-09-23:
+  Kupol 18:47, Eye of the Storm 20:12, Granite 21:26. None before Duga, Breach, Boundary, Enerhetyk, Korshunov; Red
+  Fortress needs a Strider-route save.
