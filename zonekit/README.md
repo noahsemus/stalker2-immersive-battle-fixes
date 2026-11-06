@@ -31,3 +31,20 @@ mod go to `harness/docs/` instead (promote them).
   on a Kill at the player has 6 vanilla precedents. Test note: the probe CC spawns at the quest start together with a
   Stormtrooper ~37 m away, and is SeamlessDespawned at `Trigger_SecondCombatZone`: the tester must let him hit up
   close before moving on; CptPrice (same type, 0.65) is the control later in the run.
+- Cooked and installed 2026-11-06 08:58 (dev pak `zzz_ImmersiveBattleFixes_30_P`, 32 loose cfgs: 31 actor patches +
+  1 quest patch). Waiting on the tester's run from the 2026-09-23 21:26 save.
+
+## 2026-11-06 — MCM design (tester: "add MCM support so people can tune our default values and use toggles")
+- MCM lives in Blueprint at runtime; our patches are cfg read at load. Bridge: our own global variables
+  (`GlobalVariablePrototypes` patch, defaults = our defaults, so the mod works without MCM), set by setter nodes
+  (`SetGlobalVariable`, no launchers) in a `rootgraph` patch that the provider starts with `CppMediator.StartQuestNode`
+  (+ `ExecuteConsoleCommand XStartQuestNodeBySID` as a twin). Neither is proven from Blueprint yet.
+- Retail exe console commands for globals: only `XSetGlobalBool` and `XSetGlobalObjectPath` exist (no int setter).
+- MCM's own `MCM_Restart` quest (OverrideContent loose cfg) is never started by its Blueprints.
+- Enemy counts: the default stays b1's data trim. "Fewer" / "Vanilla" add members back at runtime: an `If` on the
+  variable (missing variable = True = our default, `cfg-reference.md`), then `Spawn` of the member's own Obj spawn
+  actor + `AddOrRemoveFromSquad` into its vanilla squad. Kit evidence: vanilla despawns single squad members in 60
+  nodes and still waits on the squad's death (E06_MQ02, SQ103); `AddOrRemoveFromSquad` used 10 times (E03_MQ01).
+- Node toggles (Granite ambush): the vanilla node keeps its vanilla fields and is relaunched through an `If` (False =
+  vanilla); our changed copy runs on True.
+- Not changeable from MCM: spawn actor data read at spawn (`DamageMultiplier`, respawn fields).

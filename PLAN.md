@@ -79,6 +79,31 @@ Never remove a squad outright: its `OnNPCDeathEvent` drives the next step. Shrin
   deal 65% damage (spawn actor `DamageMultiplier = 0.65`; meaning inferred, build 1 confirms), no ambush (elites
   visible from their spawn, snipers not told where the player is). Granite snipers keep the Gauss.
 
+## MCM (tester 2026-11-06: "MCM support so people can tune our default values and use toggles")
+cfg data is fixed once the game has loaded; MCM changes things while playing. So MCM cannot edit our patches. It
+sets **our own global variables** that quest nodes read when a battle runs:
+- `GlobalVariablePrototypes` patch adds `ImmBF_*` variables; their `DefaultValue` = our defaults, so without MCM
+  the mod plays exactly as configured here (MCM stays optional, no hard dependency).
+- Setter nodes (`SetGlobalVariable`, no launchers) in a `rootgraph` patch, one per setting value
+  (`ImmBF_Set_<Setting>_<n>`). The MCM provider Blueprint starts the right one on every Apply with
+  `CppMediator.StartQuestNode` (untested from Blueprint; the console twin `XStartQuestNodeBySID` works on any quest's
+  node). The variables persist in the save.
+- Runtime host: `BP_ImmBFSubsystem` (ModWorldSubsystem) spawns the provider `BP_ImmBFMCM` through a soft class path,
+  so the main mod loads without MCM (`harness/docs/runtime-host.md`, `compatibility.md` § MCM;
+  generator pattern = ImmersiveLooting's `gen_mcm_provider.py`).
+- The default (fewest enemies) stays pure data (b1's trimmed squad lists): nothing spawns and vanishes. The other
+  levels **add enemies back**: a Condition on the variable, then `Spawn` of a dropped member's own Obj spawn actor
+  and `AddOrRemoveFromSquad` into its vanilla squad (vanilla E03_MQ01 does this), so the squad's death event still
+  waits for them. Generic squad members have no spawn actor of their own and cannot be added back (Granite "vanilla"
+  = 39 of 41).
+- Toggles that undo a node patch (e.g. Granite ambush) add a conditional copy of the vanilla node after ours.
+- What MCM **cannot** change: anything read from spawn actor data at spawn time (Granite `DamageMultiplier`,
+  respawn settings). Those stay as shipped; alternatives would be optional pak variants.
+- Settings per battle (MCM category = the battle): "Enemies" dropdown Much fewer (default) / Fewer / Vanilla, plus
+  battle-specific toggles (Granite: "No ambush", default on). Faust clones: count / pace dropdown (later builds).
+- Quest-node budget: ~3 nodes per enemy added back (Granite ~80); setters ~3 per setting. Saves on this PC sit at
+  61-63k of 65,535 names (`harness/docs/saves.md`): count again with `s2sav.py` after b2.
+
 ## Builds
 - **b1 = the Granite fight only** (`zonekit/tools/gen_patches.py`). Test save: 2026-09-23 21:26 (Generators, C01 and
   C02 done, Granite fight not started; save `48B59BF6...`).
