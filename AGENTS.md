@@ -12,6 +12,11 @@ harness on 2026-11-06.
 - 2026-11-06: repo created; kit research done, plan written (`PLAN.md`; research in `zonekit/research/`). Waiting
   on the tester: pick `ImmersiveBattleFixes` in the editor's toolbar mod selector once (GameFeatureData), the four
   decisions in PLAN.md, which saves exist before the battles. Then build 1.
+- 2026-11-06 checkpoint-granite (Noah: "granite is definitely fixed and better", "checkpoint it"; paks in
+  `zonekit/builds/checkpoint-granite/`): Granite fight (E16_MQ01_C03) 41 -> 18 Granite (squad member lists trimmed,
+  quest-named members kept), 1 Gauss sniper of 5, DamageMultiplier 0.65 on every kept member, elites visible, snipers
+  not told where the player is; the first CC at 0.1 as a probe (not noticed: direction of DamageMultiplier still
+  unproven; remove before release). Next: MCM (build 2 prepared), the Wish Granter illusion fight (E06_MQ02_C02).
 
 ## Key facts (kit research 2026-11-06; details and citations in `zonekit/research/`)
 - Quest `Spawn` nodes hold no count / distance / visibility; who, where and how many is in the spawn actor

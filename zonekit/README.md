@@ -64,3 +64,9 @@ mod go to `harness/docs/` instead (promote them).
   checked in the editor.
 - Open: does a setter re-run after it ran once (Fewer -> Much fewer -> Fewer)? Do squad-wide orders given at spawn
   (elites Stay / ForceHide, Kill) reach members added back? Squad-wide despawns and added members.
+
+## 2026-11-06 — build 1 tested: checkpoint-granite
+- Noah: "granite is definitely fixed and better". The 10% probe CC: "didn't notice" (no answer on the direction of
+  `DamageMultiplier`). Also: "there are still a lot of enemies on the wish granter fight" = the illusion fight
+  (E06_MQ02_C02), not touched by any build yet. Checkpoint on his word ("checkpoint it").
+- Git on Windows: the spawn actor patch paths are over 260 characters; `git config core.longpaths true` in the repo.
