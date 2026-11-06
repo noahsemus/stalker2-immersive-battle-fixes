@@ -95,3 +95,5 @@ mod go to `harness/docs/` instead (promote them).
   squad events (LaunchOnQuestStart, OnObjDeath; no Launchers line) and needs a save from before the illusion starts.
 - Unknown: the squad lists one member GUID twice ([0] and [4] = 9F617E81); if that keeps the squad's death from
   firing, the 120 s timer still ends it. Cooked and installed 09:37 (3 min cook).
+- Build 3 tested (Noah: "nice wish granter stuff worked"): checkpoint-wishgranter. The generator at this commit is
+  already the MCM work in progress; build 3's cfgs are the mirrored files under `zonekit/ImmersiveBattleFixes/`.

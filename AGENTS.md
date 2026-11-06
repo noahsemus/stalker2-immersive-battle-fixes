@@ -17,6 +17,11 @@ harness on 2026-11-06.
   quest-named members kept), 1 Gauss sniper of 5, DamageMultiplier 0.65 on every kept member, elites visible, snipers
   not told where the player is; the first CC at 0.1 as a probe (not noticed: direction of DamageMultiplier still
   unproven; remove before release). Next: MCM (build 2 prepared), the Wish Granter illusion fight (E06_MQ02_C02).
+- 2026-11-06 checkpoint-wishgranter (Noah: "nice wish granter stuff worked", "yes definitely save wish granter as a
+  checkpoint"; paks in `zonekit/builds/checkpoint-wishgranter/` = build 3): Wish Granter illusion (E06_MQ02_C02): the
+  level encounter spawner never switches on (only the 5-man Ward Recon squad), the illusion ends when that squad is
+  dead (120 s timer kept as fallback). Granite as checkpoint-granite. Next: MCM for every fight (one section per
+  fight, every change its own setting), the other nine fights (proposals in progress).
 
 ## Key facts (kit research 2026-11-06; details and citations in `zonekit/research/`)
 - Quest `Spawn` nodes hold no count / distance / visibility; who, where and how many is in the spawn actor
