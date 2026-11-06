@@ -1,0 +1,12 @@
+{
+    "name":  "ImmersiveBattleFixes",
+    "short":  "ImmBF",
+    "repo":  "stalker2-immersive-battle-fixes",
+    "description":  "Main-quest battles without endless waves: fewer enemies, and none spawning behind you.",
+    "release_pak_suffix":  20,
+    "dev_pak_suffix":  30,
+    "nexus_id":  null,
+    "optional_plugins":  [
+
+                         ]
+}

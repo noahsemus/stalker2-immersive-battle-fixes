@@ -1,17 +1,28 @@
-# Working in the harness repo itself
+# ImmersiveBattleFixes — mod context for the agent
 
-**First read `harness/AGENTS.md`**: the shared rules for every Stalker 2 mod. They apply here too.
+**First read `harness/AGENTS.md`**: the shared rules, tester workflow, pipeline and game knowledge for every
+Stalker 2 mod. They apply here. This file holds only what is specific to this mod.
 
-This repo is the upstream of `harness/` for every Stalker 2 mod repo (see `harness/docs/harness-workflow.md`). There is
-no mod here and no `mod.json`; tools that need a mod take `-Mod`.
+Purpose: Main-quest battles without endless waves: fewer enemies, and none spawning behind you.
 
-- If the user is new or asks to be set up, follow `harness/docs/setup.md`. If they ask for a new mod, follow
-  `harness/docs/harness-workflow.md` § New mod.
-- Commit and push harness changes directly here, then run `harness\tools\sync_harness.ps1` in each active mod repo
-  (sibling folders next to this one).
-- Keep everything generic: no mod-specific history (that goes in the mod's `zonekit/README.md`), no user- or
-  machine-specific values anywhere in the repo (paths and accounts belong in the machine settings `setup.ps1` writes), and nothing specific to one AI tool (instructions live in `AGENTS.md`
-  files; `CLAUDE.md` / `GEMINI.md` are two-line shims that import them).
-- The repo is public: nothing private (credentials, emails, personal files) in docs, tools or commit messages.
-- Root `README.md` / `AGENTS.md` / shims / `.gitignore` belong to this repo only; mods get theirs from
-  `harness/templates/`.
+Repo `noahsemus/stalker2-immersive-battle-fixes`, Zone Kit plugin `ImmersiveBattleFixes` (`/ImmersiveBattleFixes/`), asset prefix `ImmBF`. Created from the
+harness on 2026-11-06.
+
+## Current state (one line per checkpoint / release: date, what changed, what the tester confirmed in game)
+- 2026-11-06: repo created. Next: the tester picks `ImmersiveBattleFixes` in the editor's toolbar mod selector once
+  (GameFeatureData), then kit research for PLAN.md.
+
+## Key facts (verified; cite file:line in the kit)
+- _(fill in as research lands)_
+
+## Assets this mod may override
+- _(none yet; see harness/docs/compatibility.md before adding any)_
+
+## Files
+- `PLAN.md` plan and test matrix · `BUILD.md` every edit asset by asset · `zonekit/README.md` engineering log
+  (what each test showed, dead ends) · `zonekit/ImmersiveBattleFixes/` plugin mirror · `zonekit/tools/` mod-specific generators
+  and classifier lists · `zonekit/builds/` checkpoint and release paks · `mod.json` names and pak suffixes.
+- `CLAUDE.md` / `GEMINI.md` only import `harness/AGENTS.md` and this file, for tools that don't read `AGENTS.md`.
+
+## Release (only when the tester says "cut a release")
+Follow `harness/docs/pipeline.md` § Release. Nexus page: _(record the mod id here once it exists)_.

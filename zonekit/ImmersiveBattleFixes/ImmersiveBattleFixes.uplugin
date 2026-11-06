@@ -1,0 +1,18 @@
+{
+    "FileVersion":  3,
+    "Version":  1,
+    "VersionName":  "",
+    "CreatedByURL":  "",
+    "DocsURL":  "",
+    "MarketplaceURL":  "",
+    "SupportURL":  "",
+    "FriendlyName":  "ImmersiveBattleFixes",
+    "Description":  "Main-quest battles without endless waves: fewer enemies, and none spawning behind you.",
+    "Category":  "Game Features",
+    "CreatedBy":  "noahsemus",
+    "EnabledByDefault":  true,
+    "CanContainContent":  true,
+    "ExplicitlyLoaded":  true,
+    "BuiltInInitialFeatureState":  "Registered",
+    "Mod":  true
+}
