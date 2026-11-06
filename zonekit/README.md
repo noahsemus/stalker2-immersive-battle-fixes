@@ -122,3 +122,4 @@ mod go to `harness/docs/` instead (promote them).
   Kupol 18:47, Eye of the Storm 20:12, Granite 21:26. None before Duga, Breach, Boundary, Enerhetyk, Korshunov; Red
   Fortress needs a Strider-route save.
 - In game: the mod was missing from the MCM menu. Cooked bytecode (zen_kismet): only 11 RegisterModSetting / 11 defaults, no AddUniqueModID. Cause: lifted node names 920+k / 930+k / 940+k collided past 10 settings and the paste dropped the duplicates. Fixed (1000+k / 1100+k / 1200+k / 1300, generator asserts unique names); provider re-paste.
+- Re-paste checked in the cooked bytecode (18:16): 17 RegisterModSetting, 17 RegisterDefaultModSetting, 17 GetModSetting, 1 AddUniqueModID, Registered = true, 41 StartQuestNode(this.Sid_*), 41 console twins.
