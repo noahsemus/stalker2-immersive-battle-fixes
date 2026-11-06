@@ -138,3 +138,4 @@ mod go to `harness/docs/` instead (promote them).
   starts 3 s after the colonel's talk ends; AfterMonolith_Fin also runs 45 s after it (doors open, Dalin's line
   skipped). 2 new nodes. Launched from the colonel's talk, so a save already past that talk is not helped.
 - Cooked 18:42 (108 cfgs).
+- Tested (Noah: "nice, seems to have worked. dalin talked to me"): Dalin's dialog now starts after the colonel's talk (the 3 s nudge; vanilla waits for the player within 4 m of Dalin's spot, which this run never met). MCM toggle test (No reinforcements Off) not reported yet.
