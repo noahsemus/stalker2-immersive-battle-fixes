@@ -78,6 +78,14 @@ generators in the mod's `zonekit/tools/gen_*.py`; lift reusable node builders in
   editor (`unreal.find_object(None, "/Script/Engine.<Class>:<Function>")`; inherited functions such as
   `GetSocketLocation` resolve only on the declaring class), and after the paste compare function counts of the export
   with the paste.
+- **An asset export also contains the nodes deleted in this editor session** (the undo buffer keeps them; a garbage
+  collection does not drop them): they come out with the graph's path like live nodes, so counting `Begin Object`
+  lines per graph overcounts after every Ctrl+A / Delete / paste (ImmersiveLooting: a 754-node page "had" 2968). Count
+  the graph's own `Nodes(<n>)=` list instead (the live nodes) and read compiler messages only from nodes in it.
+- `Actor.AddComponentByClass` is BlueprintInternalUseOnly: write the `K2Node_AddComponentByClass` node (pins `self`
+  (the actor), `Class` (DefaultObject = the component class), `bManualAttachment`, `RelativeTransform`, `ReturnValue`,
+  plus execute / then, like `K2Node_SpawnActorFromClass`); its ReturnValue comes back typed by the Class pin, so a cast
+  after it only draws an "already a ..." note.
 - **A pasted call to a BlueprintInternalUseOnly function is silently dropped** (no error, its links vanish): e.g.
   `KismetMathLibrary` `Ease` / `VEase` / `REase` belong to the `K2Node_EaseFunction` node. Ease by hand
   (`alpha * alpha` + `VLerp`). After every paste, export the graph and compare node and link counts with the
