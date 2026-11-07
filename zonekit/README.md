@@ -140,3 +140,16 @@ mod go to `harness/docs/` instead (promote them).
 - Cooked 18:42 (108 cfgs).
 - Tested (Noah: "nice, seems to have worked. dalin talked to me"): Dalin's dialog now starts after the colonel's talk (the 3 s nudge; vanilla waits for the player within 4 m of Dalin's spot, which this run never met). MCM toggle test (No reinforcements Off) not reported yet.
 - A/B (dev pak removed, 00:08 save): Noah: "dalin doesn't talk to me anymore" = the Dalin blocker happens without ImmersiveBattleFixes too (another installed mod or a game bug; candidates: Sota Increase Dialogue Distance (QuestObjPrototypes), grEdit Better NPC AI (E06_MQ02 scientists), RWNG). The nudge stays as a fix. Door research running.
+
+## 2026-11-06 — build 4d: the projection room door (Agatha)
+- Door research (subagent; door actors from the kit's `WorldMap-WindowsModEditor.pak`, receivers matched through the
+  `BndEvt__BP_DoorView_<Receiver>` delegates): after the main room the vanilla route to "the meeting in the
+  Projection Room" passes `7_1_E06_MQ01_nii_Door_05` (Monolith room exit, 664902, 467996: Agatha unlocks + force
+  opens it) and ends at `nii_Door_06` (662081, 474758, 3102; the Agatha scene trigger 070D55E6 sits in its doorway).
+  Technical_Agatha only UNLOCKS Door_06 (receiver 9AAA3A2C); no node in the game opens it (Open FBDE6996 / ForceOpen
+  39AA10C8 have no sender). SIRCAA_Hub locks Doors 02-06 once at its start logic. Nothing on our illusion path skips
+  a door signal.
+- Fix (E06_MQ02 `add`, 5 nodes): 2 s after Technical_Agatha, Door_05 unlock -> force open and Door_06 unlock -> open.
+  Offer_Fin locks both again later, as vanilla. Not for a save already past Technical_Agatha (console:
+  `XTryReceiveSignal <guid>`, unverified).
+- Cooked and installed 19:35 (Noah's A/B run without the mod is done).
