@@ -153,3 +153,11 @@ mod go to `harness/docs/` instead (promote them).
   Offer_Fin locks both again later, as vanilla. Not for a save already past Technical_Agatha (console:
   `XTryReceiveSignal <guid>`, unverified).
 - Cooked and installed 19:35 (Noah's A/B run without the mod is done).
+- Build 4d in game: "doors still locked. it is the doors to b2" (same floor as the colonel, past the main room, the
+  objective marker on the door, interact: locked). Follow-up research: no "B2" text in actor / asset names (likely
+  texture signage); SIRCAA_Hub's lock logic runs once and no installed mod touches it (RWNG = locres only).
+  Candidates: nii_Door_05 (marker on it in the Offer route) or nii_Door_04 (OpenSpace).
+- Build 4e (cooked and installed 20:03): the same door signals again from Trigger nodes when the player enters the
+  Monolith room (F5931BAD: Door_05 unlock + force open, Door_04 unlock + open) and the corridor before the projection
+  room (E70438CB / 525D3CA9: Door_06 unlock + open). Assumption: signals sent while the door actor is not loaded are
+  lost (unverified; console `XTryReceiveSignal <guid>` at the door would tell).
