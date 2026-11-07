@@ -29,6 +29,9 @@ harness on 2026-11-06.
   the player reaches them (both blockers also happen without this mod). Tested in game: menu shows, Wish Granter
   defaults, Dalin + doors. Not yet: an MCM switch reaching a fight, Kupol, Eye of the Storm, Granite on Vanilla, the
   rest (no saves). Granite b1 probe (0.1 damage) still in.
+- 2026-11-06 checkpoint-doors (Noah: "ye it works"; paks in `zonekit/builds/checkpoint-doors/` = build 4f):
+  checkpoint-mcm with the projection room door (nii_Door_06) only unlocked, not opened (checkpoint-mcm opened it;
+  the Agatha cinematic opens it itself). Confirmed: door closed, walking up starts the cinematic.
 
 ## Key facts (kit research 2026-11-06; details and citations in `zonekit/research/`)
 - Quest `Spawn` nodes hold no count / distance / visibility; who, where and how many is in the spawn actor

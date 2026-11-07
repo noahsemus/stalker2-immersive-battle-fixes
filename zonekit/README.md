@@ -85,7 +85,7 @@ mod go to `harness/docs/` instead (promote them).
   Blueprints (no graph, no WorldSubsystemData: inert in this cook).
 - Cooked and installed 09:33 (override pak: 33 cfgs = checkpoint-granite's 32 + this one). Test save: 2026-11-06 00:08 (`4E39ECB3`: illusion container named, `E06_MQ02_C02_Start` not yet).
 
-## 2026-11-06 — build 3: the illusion ends when the Recon squad is dead
+## 2026-11-06 ï¿½ build 3: the illusion ends when the Recon squad is dead
 - Noah (before testing b2): "i don't think you should have to wait at all. you need to end it right after the 5
   soldiers are killed".
 - `E06_MQ02_C02_ChangeRelationships_VartaNeutral` (vanilla end chain: Ward neutral -> despawn signal -> End) gets a
@@ -162,4 +162,4 @@ mod go to `harness/docs/` instead (promote them).
   room (E70438CB / 525D3CA9: Door_06 unlock + open). Assumption: signals sent while the door actor is not loaded are
   lost (unverified; console `XTryReceiveSignal <guid>` at the door would tell).
 - Build 4e tested (Noah: "yay it worked!"): the doors open once he walks up to them, so the far-away signals were most likely lost on unloaded door actors.
-- Build 4f (Noah: "the door to the projection room itself was open ... it should be closed, walking up to it starts a cinematic and opening the door is part of the cinematic"): Door_06 only unlocked (both open signals removed); Door_05 / 04 still opened.
+- Build 4f (Noah: "the door to the projection room itself was open ... it should be closed, walking up to it starts a cinematic and opening the door is part of the cinematic"): Door_06 only unlocked (both open signals removed); Door_05 / 04 still opened. Noah: "ye it works" (door closed, the cinematic opens it) = checkpoint-doors.
