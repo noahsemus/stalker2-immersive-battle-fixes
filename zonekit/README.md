@@ -161,3 +161,4 @@ mod go to `harness/docs/` instead (promote them).
   Monolith room (F5931BAD: Door_05 unlock + force open, Door_04 unlock + open) and the corridor before the projection
   room (E70438CB / 525D3CA9: Door_06 unlock + open). Assumption: signals sent while the door actor is not loaded are
   lost (unverified; console `XTryReceiveSignal <guid>` at the door would tell).
+- Build 4e tested (Noah: "yay it worked!"): the doors open once he walks up to them, so the far-away signals were most likely lost on unloaded door actors.
