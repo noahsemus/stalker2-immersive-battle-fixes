@@ -143,8 +143,8 @@ BATTLES = {
             # build 4d (tester: "now my objective is to get to the projector room and another couple of glass doors
             # are closed"; also without this mod): 2 s after Technical_Agatha its door signals again, unlock first,
             # then open. nii_Door_05 (Monolith room exit): unlock + force open, as Agatha does. nii_Door_06 (the
-            # projection room door; the Agatha trigger sits in its doorway): unlock again + open (vanilla only unlocks
-            # it, nothing in the game opens it). Receivers matched to the door actors in the kit's world pak
+            # projection room door; the Agatha trigger sits in its doorway): unlock again only (the Agatha cinematic
+            # opens it). Receivers matched to the door actors in the kit's world pak
             # (zonekit/README.md). SetJournal_Offer_Fin locks both again later, as in vanilla. Chaining a SendSignal
             # off a SendSignal is vanilla's own pattern (E06_MQ01 nii_Door_02 unlock -> open).
             ("Delay_AgathaDoors", "Technical", [["E06_MQ02_Technical_Agatha"]], ["StartDelay = 2.0"]),
@@ -154,8 +154,9 @@ BATTLES = {
              ["SignalReceiverGuid = ECEBEFF74BAC480C5A8ED0B2E95D3653"]),
             ("SendSignal_Door06_Unlock", "SendSignal", [["E06_MQ02_ImmBF_Delay_AgathaDoors"]],
              ["SignalReceiverGuid = 9AAA3A2C44296096B4BDF99F03A9ECDB"]),
-            ("SendSignal_Door06_Open", "SendSignal", [["E06_MQ02_ImmBF_SendSignal_Door06_Unlock"]],
-             ["SignalReceiverGuid = FBDE69964FFEA4201A35CEBDB8F3398D"]),
+            # (build 4f, tester: "the door to the projection room itself was open ... it should be closed, walking
+            # up to it starts a cinematic and opening the door is part of the cinematic": Door_06 is only unlocked,
+            # never opened)
             # build 4e (tester: "doors still locked. it is the doors to b2", same floor, past the main room, the
             # objective marker on the door, interact says locked): the signals above are sent while the player is
             # ~40-80 m from the doors; assumed lost when the door actor is not loaded then (unverified). So the same
@@ -163,7 +164,7 @@ BATTLES = {
             # E06_MQ02_Trigger_PlayerInsideMonolithRoom; TrackBeforeActive = true also fires if he is already in it):
             # the Monolith room (F5931BAD) -> nii_Door_05 unlock + force open and nii_Door_04 (OpenSpace) unlock +
             # open (vanilla unlocked it in E06_MQ01); the corridor before the projection room (E70438CB / 525D3CA9)
-            # -> nii_Door_06 unlock + open.
+            # -> nii_Door_06 unlock only (the Agatha cinematic opens it).
             ("Trigger_MonolithRoomDoors", "Trigger", [["E06_MQ02_ImmBF_Delay_AgathaDoors"]],
              ["TargetQuestGuid = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "TriggerQuestGuid = F5931BAD40DEC8A5DD4ABC8C684EE142",
               "bTriggersByAnybody = false", "TriggerAction = 0", "RequiredSquadMembers = ERequiredSquadMembers::AnyMember",
@@ -187,8 +188,6 @@ BATTLES = {
             ("SendSignal_Door06_UnlockNear", "SendSignal", [["E06_MQ02_ImmBF_Trigger_CorridorDoor06"],
                                                             ["E06_MQ02_ImmBF_Trigger_CorridorDoor06_2"]],
              ["SignalReceiverGuid = 9AAA3A2C44296096B4BDF99F03A9ECDB"]),
-            ("SendSignal_Door06_OpenNear", "SendSignal", [["E06_MQ02_ImmBF_SendSignal_Door06_UnlockNear"]],
-             ["SignalReceiverGuid = FBDE69964FFEA4201A35CEBDB8F3398D"]),
         ],
     },
     "E07_MQ05": dict(DUGA, **{  # The Assault on the Duga, Ward route: barricades -> psy lamps -> KPP -> hold the KPP

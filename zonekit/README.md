@@ -162,3 +162,4 @@ mod go to `harness/docs/` instead (promote them).
   room (E70438CB / 525D3CA9: Door_06 unlock + open). Assumption: signals sent while the door actor is not loaded are
   lost (unverified; console `XTryReceiveSignal <guid>` at the door would tell).
 - Build 4e tested (Noah: "yay it worked!"): the doors open once he walks up to them, so the far-away signals were most likely lost on unloaded door actors.
+- Build 4f (Noah: "the door to the projection room itself was open ... it should be closed, walking up to it starts a cinematic and opening the door is part of the cinematic"): Door_06 only unlocked (both open signals removed); Door_05 / 04 still opened.
