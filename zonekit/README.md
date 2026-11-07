@@ -139,3 +139,4 @@ mod go to `harness/docs/` instead (promote them).
   skipped). 2 new nodes. Launched from the colonel's talk, so a save already past that talk is not helped.
 - Cooked 18:42 (108 cfgs).
 - Tested (Noah: "nice, seems to have worked. dalin talked to me"): Dalin's dialog now starts after the colonel's talk (the 3 s nudge; vanilla waits for the player within 4 m of Dalin's spot, which this run never met). MCM toggle test (No reinforcements Off) not reported yet.
+- A/B (dev pak removed, 00:08 save): Noah: "dalin doesn't talk to me anymore" = the Dalin blocker happens without ImmersiveBattleFixes too (another installed mod or a game bug; candidates: Sota Increase Dialogue Distance (QuestObjPrototypes), grEdit Better NPC AI (E06_MQ02 scientists), RWNG). The nudge stays as a fix. Door research running.
