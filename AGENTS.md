@@ -22,6 +22,13 @@ harness on 2026-11-06.
   level encounter spawner never switches on (only the 5-man Ward Recon squad), the illusion ends when that squad is
   dead (120 s timer kept as fallback). Granite as checkpoint-granite. Next: MCM for every fight (one section per
   fight, every change its own setting), the other nine fights (proposals in progress).
+- 2026-11-06 checkpoint-mcm (Noah: "yay it worked!", "yes checkpoint"; paks in `zonekit/builds/checkpoint-mcm/`):
+  every in-scope fight (Wish Granter, Duga, Breach, Boundary, Enerhetyk, Kupol, Korshunov static, Eye of the Storm,
+  Red Fortress, Granite) with 17 MCM settings (menu confirmed in game); Wish Granter aftermath fixes: Dalin's dialog
+  also starts 3 s after the colonel's talk, the Agatha doors (nii_Door_05/06, plus 04) re-unlocked and opened when
+  the player reaches them (both blockers also happen without this mod). Tested in game: menu shows, Wish Granter
+  defaults, Dalin + doors. Not yet: an MCM switch reaching a fight, Kupol, Eye of the Storm, Granite on Vanilla, the
+  rest (no saves). Granite b1 probe (0.1 damage) still in.
 
 ## Key facts (kit research 2026-11-06; details and citations in `zonekit/research/`)
 - Quest `Spawn` nodes hold no count / distance / visibility; who, where and how many is in the spawn actor
